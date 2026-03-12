@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVELYN | Товар</title>
+  <link rel="stylesheet" href="styles.css">
+  <link type="image/x-icon" href="./img/Logo.png" rel="shortcut icon">
+  <link type="image/x-icon" href="./img/Logo.png" rel="icon">
+</head>
+<body data-page="product">
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="img/Logo.png" alt="Логотип">
+    </a>
+    <nav class="nav">
+      <a href="index.html#categories" class="nav-link">Категории</a>
+      <a href="index.html#products" class="nav-link">Товары</a>
+      <a href="index.html#offers" class="nav-link">Акции</a>
+      <a href="index.html#contacts" class="nav-link">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-btn" aria-label="Поиск">
+        <img src="icon/search.png" alt="">
+      </button>
+      <button class="icon-btn cart-btn" aria-label="Корзина">
+        <img src="./icon/Корзина.png" alt="">
+        <span class="cart-count">0</span>
+      </button>
+      <button class="icon-btn burger-btn" aria-label="Меню">
+        <img src="./icon/Burger-Menu.png" alt="">
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <nav class="mobile-nav">
+      <a href="index.html#categories" class="mobile-nav-link">Категории</a>
+      <a href="index.html#products" class="mobile-nav-link">Товары</a>
+      <a href="index.html#offers" class="mobile-nav-link">Акции</a>
+      <a href="index.html#contacts" class="mobile-nav-link">Контакты</a>
+    </nav>
+  </div>
+
+  <!-- Cart Overlay -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- Cart Panel -->
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel-header">
+      <h2 class="cart-panel-title">Корзина</h2>
+      <button type="button" class="cart-panel-close" aria-label="Закрыть">×</button>
+    </div>
+    <div class="cart-panel-body">
+      <div class="cart-empty" id="cartEmpty">Корзина пуста</div>
+      <div class="cart-list" id="cartList"></div>
+    </div>
+    <div class="cart-panel-footer">
+      <div class="cart-footer-total">
+        <span>Итого:</span>
+        <span class="cart-total" id="cartTotal">0 ₽</span>
+      </div>
+      <a href="#" class="btn btn-gold cart-checkout-btn" id="cartCheckoutBtn">Перейти к оформлению</a>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-overlay-inner">
+      <div class="search-box">
+        <input type="search" placeholder="Поиск ароматов..." class="search-input" autocomplete="off">
+        <button class="search-close" aria-label="Закрыть">×</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section product-detail" id="productDetail">
+      <button class="btn btn-back" id="detailBackBtn">Назад</button>
+
+      <div class="product-detail-layout">
+        <!-- Left: Gallery -->
+        <div class="product-gallery">
+          <div class="product-gallery-thumbs-column">
+            <button class="gallery-arrow-thumbs prev" aria-label="Предыдущее фото">▲</button>
+            <div class="product-gallery-thumbs" id="detailThumbs"></div>
+            <button class="gallery-arrow-thumbs next" aria-label="Следующее фото">▼</button>
+          </div>
+          <div class="product-gallery-main">
+            <div class="product-gallery-main-inner">
+              <img id="detailMainImg" src="" alt="">
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle: Info -->
+        <div class="product-detail-main">
+          <h1 class="product-detail-title" id="detailName"></h1>
+          <div class="product-detail-meta">
+            <p class="detail-category" id="detailCategory"></p>
+            <p class="detail-type" id="detailType"></p>
+          </div>
+
+          <div class="detail-volume">
+            <h3 class="detail-block-title">Вариант товара</h3>
+            <p class="detail-volume-sub">Объём флакона</p>
+            <div class="volume-options" id="detailVolumes"></div>
+          </div>
+
+          <div class="detail-description">
+            <h3 class="detail-block-title">О товаре:</h3>
+            <p id="detailDescription"></p>
+          </div>
+
+          <div class="detail-pyramid">
+            <h3 class="detail-block-title">Пирамида ароматов:</h3>
+            <p><strong>Верхние ноты:</strong> <span id="detailTopNotes"></span></p>
+            <p><strong>Ноты сердца:</strong> <span id="detailHeartNotes"></span></p>
+            <p><strong>Базовые ноты:</strong> <span id="detailBaseNotes"></span></p>
+          </div>
+        </div>
+
+        <!-- Right: Price & Buy -->
+        <aside class="product-buy-card">
+          <div class="product-buy-price">
+            <div class="product-buy-price-main">
+              <span class="product-buy-price-current" id="detailPrice"></span>
+            </div>
+            <p class="product-buy-note">Цена за выбранный объём</p>
+          </div>
+
+          <button class="btn btn-gold product-buy-btn" id="detailBuyBtn">
+            В корзину
+          </button>
+
+          <div class="product-buy-extra">
+            <p>Быстрый самовывоз и доставка по городу.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Extra info like marketplace block -->
+    <section class="section product-extra">
+      <div class="product-extra-row">
+        <div class="product-extra-col product-extra-col-description" id="detailLongBlock">
+          <h2 class="product-extra-title">Описание:</h2>
+          <p class="product-extra-text" id="detailLongDescription"></p>
+          <button type="button" class="product-extra-toggle">Свернуть</button>
+        </div>
+        <div class="product-extra-col product-extra-col-side">
+          <div class="product-extra-block" id="detailUsageBlock">
+            <h3 class="product-extra-title">Способ применения:</h3>
+            <p class="product-extra-text" id="detailUsage"></p>
+            <button type="button" class="product-extra-toggle">Свернуть</button>
+          </div>
+          <div class="product-extra-block" id="detailCompositionBlock">
+            <h3 class="product-extra-title">Состав:</h3>
+            <p class="product-extra-text" id="detailComposition"></p>
+            <button type="button" class="product-extra-toggle">Свернуть</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <img src="img/Logo.png" alt="Логотип" class="footer-logo">
+      <p class="footer-text">© 2026 EVELYN | Парфюмерия. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

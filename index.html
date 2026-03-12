@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVELYN | Парфюмерия</title>
+  <link rel="stylesheet" href="styles.css">
+
+	<link type="image/x-icon" href="./img/Logo.png"  rel="shortcut icon">
+  <link type="image/x-icon" href="./img/Logo.png" rel="icon">
+</head>
+<body data-page="home">
+  <!-- Header -->
+  <header class="header">
+    <a href="#" class="logo" data-section="hero">
+      <img src="img/Logo.png" alt="Логотип">
+    </a>
+    <nav class="nav">
+      <a href="#" class="nav-link" data-section="categories">Категории</a>
+      <a href="#" class="nav-link" data-section="products">Товары</a>
+      <a href="#" class="nav-link" data-section="offers">Акции</a>
+      <a href="#" class="nav-link" data-section="contacts">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-btn" aria-label="Поиск">
+        <img src="icon/search.png" alt="">
+      </button>
+      <button class="icon-btn cart-btn" aria-label="Корзина">
+        <img src="./icon/Корзина.png" alt="">
+        <span class="cart-count">0</span>
+      </button>
+      <button class="icon-btn burger-btn" aria-label="Меню">
+        <img src="./icon/Burger-Menu.png" alt="">
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <nav class="mobile-nav">
+      <a href="#" class="mobile-nav-link" data-section="categories">Категории</a>
+      <a href="#" class="mobile-nav-link" data-section="products">Товары</a>
+      <a href="#" class="mobile-nav-link" data-section="offers">Акции</a>
+      <a href="#" class="mobile-nav-link" data-section="contacts">Контакты</a>
+    </nav>
+  </div>
+
+  <!-- Cart Overlay -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- Cart Panel -->
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel-header">
+      <h2 class="cart-panel-title">Корзина</h2>
+      <button type="button" class="cart-panel-close" aria-label="Закрыть">×</button>
+    </div>
+    <div class="cart-panel-body">
+      <div class="cart-empty" id="cartEmpty">Корзина пуста</div>
+      <div class="cart-list" id="cartList"></div>
+    </div>
+    <div class="cart-panel-footer">
+      <div class="cart-footer-total">
+        <span>Итого:</span>
+        <span class="cart-total" id="cartTotal">0 ₽</span>
+      </div>
+      <a href="#" class="btn btn-gold cart-checkout-btn" id="cartCheckoutBtn">Перейти к оформлению</a>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-overlay-inner">
+      <div class="search-box">
+        <input type="search" placeholder="Поиск ароматов..." class="search-input" autocomplete="off">
+        <button class="search-close" aria-label="Закрыть">×</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="section hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Аромат <span class="gold">элегантности</span></h1>
+        <p class="hero-subtitle">Изысканная парфюмерия для вашего неповторимого стиля</p>
+        <a href="#" class="btn btn-gold" data-section="products">Смотреть каталог</a>
+      </div>
+      <div class="hero-decoration"></div>
+    </section>
+
+    <!-- Banners Carousel -->
+    <section id="offers" class="section banners">
+      <div class="banners-container">
+        <button class="banner-arrow banner-prev" aria-label="Назад">
+          <img src="./icon/left.png" alt="">
+        </button>
+        <div class="banners-track">
+          <div class="banner-slide">
+            <img src="./img/баннер1.png" alt="Акция 1">
+          </div>
+          <div class="banner-slide">
+            <img src="./img/баннер2.png" alt="Акция 2">
+          </div>
+          <div class="banner-slide">
+            <img src="./img/баннер3.png" alt="Акция 3">
+          </div>
+          <div class="banner-slide">
+            <img src="./img/баннер5.png" alt="Акция 4">
+          </div>
+        </div>
+        <button class="banner-arrow banner-next" aria-label="Вперёд">
+          <img src="./icon/right.png" alt="">
+        </button>
+        <div class="banner-dots"></div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="section categories">
+      <h2 class="section-title">Выберите <span class="gold">категорию</span></h2>
+      <div class="categories-grid">
+        <a href="#" class="category-card" data-filter="women">
+          <div class="category-image">
+            <img src="./img/Аромат-Роза(Для неё).png" alt="Женские ароматы">
+            <div class="category-overlay"></div>
+          </div>
+          <h3 class="category-title">Для неё</h3>
+          <p class="category-desc">Женские ароматы</p>
+        </a>
+        <a href="#" class="category-card" data-filter="men">
+          <div class="category-image">
+            <img src="./img/Аромат-Лайм(Для него).png" alt="Мужские ароматы">
+            <div class="category-overlay"></div>
+          </div>
+          <h3 class="category-title">Для него</h3>
+          <p class="category-desc">Мужские ароматы</p>
+        </a>
+        <a href="#" class="category-card" data-filter="unisex">
+          <div class="category-image">
+            <img src="./img/Аромат-Личи(Унисекс).png" alt="Унисекс ароматы">
+            <div class="category-overlay"></div>
+          </div>
+          <h3 class="category-title">Унисекс</h3>
+          <p class="category-desc">Универсальные ароматы</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="section products">
+      <h2 class="section-title">Наши <span class="gold">ароматы</span></h2>
+      <div class="products-layout">
+        <aside class="products-sidebar">
+          <h3 class="products-sidebar-title">Фильтр</h3>
+
+          <div class="filter-block">
+            <h4 class="filter-block-title">Категория</h4>
+            <div class="product-filters">
+              <button class="filter-btn active" data-filter="all">Все</button>
+              <button class="filter-btn" data-filter="women">Для неё</button>
+              <button class="filter-btn" data-filter="men">Для него</button>
+              <button class="filter-btn" data-filter="unisex">Унисекс</button>
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <h4 class="filter-block-title">Цена, ₽</h4>
+            <div class="filter-price-range">
+              <div class="filter-price-inputs">
+                <label class="filter-price-label">
+                  <span>От</span>
+                  <input type="number" id="filterPriceMin" placeholder="0">
+                </label>
+                <label class="filter-price-label">
+                  <span>До</span>
+                  <input type="number" id="filterPriceMax" placeholder="50 000">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <h4 class="filter-block-title">Ноты аромата</h4>
+            <p class="filter-block-hint">Выберите ноты, которые должны присутствовать в пирамиде аромата.</p>
+            <div class="filter-notes-list">
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="ваниль">
+                <span>Ваниль</span>
+              </label>
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="вишн">
+                <span>Вишня / Черешня</span>
+              </label>
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="бергамот">
+                <span>Бергамот</span>
+              </label>
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="цитрус">
+                <span>Цитрусовые</span>
+              </label>
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="мускус">
+                <span>Мускус</span>
+              </label>
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="древесн">
+                <span>Древесные</span>
+              </label>
+              <label class="filter-note">
+                <input type="checkbox" class="filter-note-input" data-note="цветок">
+                <span>Цветочные</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="button" class="filter-reset-btn" id="filtersReset">
+            Сбросить фильтры
+          </button>
+        </aside>
+
+        <div class="products-main">
+          <div class="products-grid" id="productsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contacts" class="section contacts">
+      <h2 class="section-title">Свяжитесь <span class="gold">с нами</span></h2>
+      <div class="contacts-content">
+        <a href="https://yandex.ru/maps/-/CPuSUS3h" class="contact-item">
+          <img src="./icon/addres.png" alt="">
+          <span>Адрес магазина: <br> Г.Ульяновск, Московское шоссе, 108</span>
+        </a>
+        <a href="##" class="contact-item">
+          <img src="icon/gmail.png" alt="">
+          <span>Почта: <br> EVELYNperfume@gmail.com </span>
+        </a>
+        <a href="##" class="contact-item">
+          <img src="icon/telegram.png" alt="">
+          <span>Telegram: <br> @EVELYN_shop </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <img src="img/Logo.png" alt="Логотип" class="footer-logo">
+      <p class="footer-text">© 2026 EVELYN | Парфюмерия. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

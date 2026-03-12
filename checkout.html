@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVELYN | Оформление заказа</title>
+  <link rel="stylesheet" href="styles.css">
+  <link type="image/x-icon" href="./img/Logo.png" rel="shortcut icon">
+  <link type="image-x-icon" href="./img/Logo.png" rel="icon">
+</head>
+<body data-page="checkout">
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="img/Logo.png" alt="Логотип">
+    </a>
+    <nav class="nav">
+      <a href="index.html#categories" class="nav-link">Категории</a>
+      <a href="index.html#products" class="nav-link">Товары</a>
+      <a href="index.html#offers" class="nav-link">Акции</a>
+      <a href="index.html#contacts" class="nav-link">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-btn" aria-label="Поиск">
+        <img src="icon/search.png" alt="">
+      </button>
+      <button class="icon-btn cart-btn" aria-label="Корзина">
+        <img src="./icon/Корзина.png" alt="">
+        <span class="cart-count">0</span>
+      </button>
+      <button class="icon-btn burger-btn" aria-label="Меню">
+        <img src="./icon/Burger-Menu.png" alt="">
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <nav class="mobile-nav">
+      <a href="index.html#categories" class="mobile-nav-link">Категории</a>
+      <a href="index.html#products" class="mobile-nav-link">Товары</a>
+      <a href="index.html#offers" class="mobile-nav-link">Акции</a>
+      <a href="index.html#contacts" class="mobile-nav-link">Контакты</a>
+    </nav>
+  </div>
+
+  <!-- Cart Overlay -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- Cart Panel -->
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel-header">
+      <h2 class="cart-panel-title">Корзина</h2>
+      <button type="button" class="cart-panel-close" aria-label="Закрыть">×</button>
+    </div>
+    <div class="cart-panel-body">
+      <div class="cart-empty" id="cartEmpty">Корзина пуста</div>
+      <div class="cart-list" id="cartList"></div>
+    </div>
+    <div class="cart-panel-footer">
+      <div class="cart-footer-total">
+        <span>Итого:</span>
+        <span class="cart-total" id="cartTotal">0 ₽</span>
+      </div>
+      <a href="checkout.html" class="btn btn-gold cart-checkout-btn" id="cartCheckoutBtn">Перейти к оформлению</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="section checkout">
+      <h1 class="section-title">Оформление <span class="gold">заказа</span></h1>
+
+      <div class="checkout-layout">
+        <!-- Left: Order Summary -->
+        <div class="checkout-summary">
+          <h2 class="checkout-block-title">Ваш заказ</h2>
+          <div id="checkoutItems" class="checkout-items"></div>
+          <div class="checkout-summary-footer">
+            <div class="checkout-summary-row">
+              <span>Сумма заказа</span>
+              <span id="checkoutTotal">0 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="checkout-form-wrapper">
+          <h2 class="checkout-block-title">Данные покупателя</h2>
+          <form id="checkoutForm" novalidate>
+            <div class="checkout-field-group">
+              <label class="checkout-field">
+                <span>ФИО</span>
+                <input type="text" name="fullName" id="fullName" placeholder="Иванов Иван Иванович" required>
+                <span class="field-error" data-for="fullName"></span>
+              </label>
+
+              <label class="checkout-field">
+                <span>Номер телефона</span>
+                <input type="tel" name="phone" id="phone" placeholder="+7 900 000-00-00" required>
+                <span class="field-error" data-for="phone"></span>
+              </label>
+
+              <label class="checkout-field">
+                <span>Электронная почта</span>
+                <input type="email" name="email" id="email" placeholder="example@mail.ru" required>
+                <span class="field-error" data-for="email"></span>
+              </label>
+
+              <label class="checkout-field">
+                <span>Telegram тег (по желанию)</span>
+                <input type="text" name="telegram" id="telegram" placeholder="@username">
+                <span class="field-error" data-for="telegram"></span>
+              </label>
+            </div>
+
+            <div class="checkout-field-group">
+              <div class="checkout-field">
+                <span>Способ доставки</span>
+                <div class="checkout-radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="delivery" value="courier" required>
+                    <span>Курьером</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="delivery" value="pickup" required>
+                    <span>В пункт выдачи</span>
+                  </label>
+                </div>
+                <span class="field-error" data-for="delivery"></span>
+              </div>
+
+              <label class="checkout-field" id="addressField">
+                <span>Адрес доставки</span>
+                <input type="text" name="address" id="address" placeholder="Город, улица, дом, квартира" required>
+                <span class="field-error" data-for="address"></span>
+              </label>
+
+              <div class="checkout-field checkout-pickup" id="pickupControls" hidden>
+                <span>Пункт выдачи</span>
+                <button type="button" class="btn pickup-select-btn" id="pickupSelectBtn">
+                  Выбрать пункт выдачи
+                </button>
+                <p class="checkout-pickup-hint">
+                  На открывшейся карте выберите удобный пункт выдачи. Адрес будет согласован с консультантом.
+                </p>
+              </div>
+            </div>
+
+            <div class="checkout-field-group">
+              <div class="checkout-field">
+                <span>Способ оплаты</span>
+                <div class="checkout-radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="payment" value="card" required>
+                    <span>Картой</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="payment" value="sbp" required>
+                    <span>СБП</span>
+                  </label>
+                </div>
+                <span class="field-error" data-for="payment"></span>
+              </div>
+
+              <div class="checkout-card-fields" id="cardFields" hidden>
+                <label class="checkout-field">
+                  <span>Номер карты</span>
+                  <input type="text" name="cardNumber" id="cardNumber" placeholder="0000 0000 0000 0000">
+                  <span class="field-error" data-for="cardNumber"></span>
+                </label>
+                <div class="checkout-card-row">
+                  <label class="checkout-field">
+                    <span>Срок действия (MM/YY)</span>
+                    <input type="text" name="cardExpiry" id="cardExpiry" placeholder="MM/YY">
+                    <span class="field-error" data-for="cardExpiry"></span>
+                  </label>
+                  <label class="checkout-field">
+                    <span>CVC/CVV</span>
+                    <input type="password" name="cardCvv" id="cardCvv" placeholder="000">
+                    <span class="field-error" data-for="cardCvv"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold checkout-submit-btn">
+              Оплатить
+            </button>
+
+            <p class="checkout-success" id="checkoutSuccessMessage" hidden>
+              Спасибо! Информация по заказу будет отправлена на указанную электронную почту и в SMS.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <img src="img/Logo.png" alt="Логотип" class="footer-logo">
+      <p class="footer-text">© 2026 EVELYN | Парфюмерия. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
